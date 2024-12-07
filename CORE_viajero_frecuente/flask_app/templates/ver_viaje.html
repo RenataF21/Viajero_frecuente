@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viaje
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    {% block content %}
+    <div class="container" style="border: 1px black solid; margin-top: 10%; padding: 20px;">
+        <h1>Detalles del viaje</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-group">
+            <span >
+                <p><strong>Destino: </strong>  <input type="text" value="{{ evento.destino }}" readonly style="pointer-events: none;"></p>
+            </span>
+            
+        </div>
+
+        <div class="form-group">
+            <p><strong>Organizador: </strong>  <input type="text" value="{{ evento.organizador }}" readonly></p>
+        </div>
+
+        <div class="form-group">
+            <p><strong>Fecha de Inicio: </strong>  <input type="text" value="{{ evento.fecha_inicio.strftime('%d/%m/%Y - %H:%M') }}" readonly></p>
+        </div>
+
+        <div class="form-group">
+            <p><strong>Fecha de Fin: </strong>  <input type="text" value="{{ evento.fecha_fin.strftime('%d/%m/%Y - %H:%M') }}" readonly></p>
+        </div>
+
+        <div class="form-group">
+            <p><strong>Acciones: </strong>  <input type="text" value="{{ evento.acciones }}" readonly></p>
+        </div>
+
+        <div class="buttons">
+            <a href="{{ url_for('dashboard') }}" class="cancel-btn">Volver</a>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>
